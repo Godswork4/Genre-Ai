@@ -2,9 +2,11 @@ import { Link } from 'react-router-dom';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useWalletConnection } from '../../hooks/useWalletConnection';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { isConnected, isLoading, connect, disconnect, address } = useWalletConnection();
 
   const navItems = [
     { name: 'Home', path: '/' },
@@ -12,6 +14,18 @@ const Navbar = () => {
     { name: 'Trade', path: '/trade' },
     { name: 'Analytics', path: '/analytics' },
   ];
+
+  const handleWalletClick = () => {
+    if (isConnected) {
+      disconnect();
+    } else {
+      connect();
+    }
+  };
+
+  const formatAddress = (addr: string) => {
+    return `${addr.slice(0, 6)}...${addr.slice(-4)}`;
+  };
 
   return (
     <nav className="fixed w-full z-50 backdrop-blur-xl bg-background/80 border-b border-gray-800">
@@ -53,9 +67,19 @@ const Navbar = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-6 py-2 text-sm font-medium text-white bg-gradient-to-r from-primary to-secondary rounded-lg shadow-glow hover:shadow-glow-strong transition-all duration-300"
+                onClick={handleWalletClick}
+                disabled={isLoading}
+                className={`px-6 py-2 text-sm font-medium text-white rounded-lg shadow-glow transition-all duration-300 ${
+                  isLoading
+                    ? 'bg-gray-600 cursor-not-allowed'
+                    : 'bg-gradient-to-r from-primary to-secondary hover:shadow-glow-strong'
+                }`}
               >
-                Connect Wallet
+                {isLoading
+                  ? 'Connecting...'
+                  : isConnected
+                  ? formatAddress(address || '')
+                  : 'Connect Wallet'}
               </motion.button>
             </div>
           </div>
@@ -94,8 +118,20 @@ const Navbar = () => {
                 {item.name}
               </Link>
             ))}
-            <button className="w-full mt-4 px-6 py-2 text-base font-medium text-white bg-gradient-to-r from-primary to-secondary rounded-lg shadow-glow hover:shadow-glow-strong">
-              Connect Wallet
+            <button 
+              onClick={handleWalletClick}
+              disabled={isLoading}
+              className={`w-full mt-4 px-6 py-2 text-base font-medium text-white rounded-lg shadow-glow transition-all duration-300 ${
+                isLoading
+                  ? 'bg-gray-600 cursor-not-allowed'
+                  : 'bg-gradient-to-r from-primary to-secondary hover:shadow-glow-strong'
+              }`}
+            >
+              {isLoading
+                ? 'Connecting...'
+                : isConnected
+                ? formatAddress(address || '')
+                : 'Connect Wallet'}
             </button>
           </div>
         )}

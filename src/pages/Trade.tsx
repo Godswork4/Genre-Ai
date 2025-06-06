@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { ArrowsUpDownIcon, InformationCircleIcon } from '@heroicons/react/24/outline';
+import { ArrowsUpDownIcon } from '@heroicons/react/24/outline';
 import { motion } from 'framer-motion';
 
 const Trade = () => {
-  const [fromToken, setFromToken] = useState('ETH');
-  const [toToken, setToToken] = useState('DOT');
+  const [fromToken, setFromToken] = useState('TRN');
+  const [toToken, setToToken] = useState('ROOT');
   const [amount, setAmount] = useState('');
 
   const handleSwap = () => {
@@ -13,130 +13,75 @@ const Trade = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background pt-20 pb-12">
-      <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-[#0a0b0d] pt-6">
+      <div className="max-w-md mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-surface rounded-2xl shadow-lg p-8 backdrop-blur-xl"
+          className="bg-[#1a1b1f] rounded-xl p-6"
         >
-          <h2 className="text-2xl font-bold text-white mb-2">Trade Tokens</h2>
-          <p className="text-gray-400 mb-8">Swap tokens at the best rates</p>
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-lg font-semibold text-white">Swap</h2>
+            <button className="text-blue-500 hover:text-blue-400">
+              <ArrowsUpDownIcon className="h-5 w-5" />
+            </button>
+          </div>
           
           {/* From Token */}
-          <div className="space-y-2">
-            <label className="block text-sm font-medium text-gray-300">From</label>
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.1 }}
-              className="flex space-x-4"
-            >
-              <select
-                value={fromToken}
-                onChange={(e) => setFromToken(e.target.value)}
-                className="block w-1/3 rounded-xl bg-surface-dark border border-gray-800 text-white focus:border-primary focus:ring focus:ring-primary/20"
-              >
-                <option value="ETH">ETH</option>
-                <option value="DOT">DOT</option>
-                <option value="BTC">BTC</option>
-              </select>
+          <div className="space-y-4">
+            <div className="bg-[#212226] rounded-lg p-4">
               <input
                 type="number"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
-                placeholder="0.0"
-                className="block w-2/3 rounded-xl bg-surface-dark border border-gray-800 text-white placeholder-gray-500 focus:border-primary focus:ring focus:ring-primary/20"
+                placeholder="0"
+                className="w-full bg-transparent text-2xl text-white placeholder-gray-500 outline-none"
               />
-            </motion.div>
+              <div className="flex justify-between items-center mt-2">
+                <button className="flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-500/20">
+                  <span className="text-blue-500">{fromToken}</span>
+                </button>
+                <span className="text-gray-400 text-sm">Balance: 1,234.56 {fromToken}</span>
           </div>
-
-          {/* Swap Button */}
-          <div className="flex justify-center my-6">
-            <motion.button
-              whileHover={{ scale: 1.1, rotate: 180 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={handleSwap}
-              className="rounded-full p-3 bg-surface-dark hover:bg-surface-light transition-colors"
-            >
-              <ArrowsUpDownIcon className="h-6 w-6 text-primary" />
-            </motion.button>
           </div>
 
           {/* To Token */}
-          <div className="space-y-2">
-            <label className="block text-sm font-medium text-gray-300">To</label>
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2 }}
-              className="flex space-x-4"
-            >
-              <select
-                value={toToken}
-                onChange={(e) => setToToken(e.target.value)}
-                className="block w-1/3 rounded-xl bg-surface-dark border border-gray-800 text-white focus:border-primary focus:ring focus:ring-primary/20"
-              >
-                <option value="DOT">DOT</option>
-                <option value="ETH">ETH</option>
-                <option value="BTC">BTC</option>
-              </select>
+            <div className="bg-[#212226] rounded-lg p-4">
               <input
                 type="text"
                 readOnly
-                value="0.0"
-                className="block w-2/3 rounded-xl bg-surface-dark border border-gray-800 text-white"
+                value="0"
+                className="w-full bg-transparent text-2xl text-white outline-none"
               />
-            </motion.div>
+              <div className="flex justify-between items-center mt-2">
+                <button className="flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-500/20">
+                  <span className="text-blue-500">{toToken}</span>
+                </button>
+                <span className="text-gray-400 text-sm">Balance: 557.63 {toToken}</span>
+              </div>
+            </div>
           </div>
 
-          {/* Trade Button */}
+          {/* Swap Details */}
+          <div className="mt-6 space-y-3">
+            <div className="flex justify-between text-sm">
+              <span className="text-gray-400">APY</span>
+              <span className="text-white">15.24%</span>
+            </div>
+            <div className="flex justify-between text-sm">
+              <span className="text-gray-400">Unlock timer</span>
+              <span className="text-white">7 days</span>
+            </div>
+          </div>
+
+          {/* Swap Button */}
           <motion.button
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            onClick={() => {/* Implement trade logic */}}
-            className="w-full mt-8 bg-gradient-to-r from-primary to-secondary text-white py-3 px-4 rounded-xl font-medium shadow-glow hover:shadow-glow-strong transition-all duration-300"
+            className="w-full mt-6 bg-blue-500 text-white py-3 rounded-lg font-medium hover:bg-blue-600 transition-colors"
           >
-            Trade Now
+            Swap
           </motion.button>
-
-          {/* Price Info */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-            className="mt-6 p-4 bg-surface-dark rounded-xl border border-gray-800"
-          >
-            <div className="flex items-center justify-between text-sm text-gray-400 mb-2">
-              <span className="flex items-center">
-                Exchange Rate
-                <InformationCircleIcon className="h-4 w-4 ml-1" />
-              </span>
-              <span>1 {fromToken} = 15.5 {toToken}</span>
-            </div>
-            <div className="flex items-center justify-between text-sm text-gray-400">
-              <span className="flex items-center">
-                Network Fee
-                <InformationCircleIcon className="h-4 w-4 ml-1" />
-              </span>
-              <span>~$2.50</span>
-            </div>
-          </motion.div>
-
-          {/* Additional Info */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            className="mt-6 text-center"
-          >
-            <p className="text-sm text-gray-400">
-              Powered by AI for the best rates across DEXs
-            </p>
-          </motion.div>
         </motion.div>
       </div>
     </div>

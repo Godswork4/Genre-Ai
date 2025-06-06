@@ -1,54 +1,75 @@
-# React + TypeScript + Vite
+# Genre AI - Intelligent DeFi Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An intelligent DeFi platform powered by AI, built on the Root Network. Genre AI combines advanced blockchain technology with artificial intelligence to provide a seamless and intuitive DeFi experience.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- AI-Powered Trading Assistant
+- Advanced DeFi Operations
+- Seamless User Experience
+- Secure Blockchain Integration
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Prerequisites
+- Node.js v16.0.0 or higher
+- npm or yarn
+- MetaMask or Web3 wallet
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### Installation
+
+1. Clone and install:
+```bash
+git clone https://github.com/Godswork4/GenreAi
+cd ai-defi-copilot
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+2. Set up environment:
+```env
+VITE_ROOT_NETWORK_API_URL=https://porcini.rootnet.app/archive
+VITE_ASM_BRAIN_API_URL=your_brain_api_url
+VITE_OPENAI_API_KEY=your_openai_key
+VITE_WALLET_CONNECT_PROJECT_ID=your_project_id
+VITE_FUTURE_PASS_CLIENT_ID=your_client_id
+VITE_FUTUREPASS_ACCESS_TOKEN=your_access_token
 ```
+
+3. Run development server:
+```bash
+npm run dev
+```
+
+## Core Features
+
+### AI Trading Assistant
+- Natural language trading
+- Market analysis
+- Portfolio insights
+
+### Token Swapping
+- Multiple token pairs
+- Optimal routing
+- Slippage protection
+
+### Liquid Staking
+- Flexible staking
+- Real-time APY
+- Instant unstaking
+
+### Portfolio Management
+- Real-time valuation
+- Transaction history
+- Performance analytics
+
+## License
+
+MIT License
+
+## Support
+
+For support, contact support@genreai.io
+
+---
+
+Made with ❤️ by Genre AI 
